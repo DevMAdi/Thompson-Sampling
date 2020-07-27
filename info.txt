@@ -1,0 +1,56 @@
+We have many machine. we need to find machine with best distribution so that we exploit that best distribution. Take time so we need to maximise our return while exploring. so need to find ideal tradeoff between exploring & exploitation.
+----------------------------------------------------------------------
+Screenshot (2751)- Bayesian Inference
+
+Screenshot (2752)- Steps for Thompson sampling Algo.
+
+Key Diff- Thompson sampling is probablistic distribution
+		  UCB is determinstic distribution
+----------------------------------------------------------------------
+Explaination:
+Screenshot (2753)
+Return is Y-axis. 3 machine. 3 colored lines represent actual/expected return for each machine(we don't know this)
+yellow has best distribution here.
+Screenshot (2754)
+after few trails/ runs- we pick some pts. & make distribution perception with them about current state of things.
+
+Note:
+we're not trying to guess distribution behind machine. eg- the blue distribution is not our attempt at guessing what distribution of blue machine would be
+
+We're costructing distribution of where we think actual expected value may lie.
+----------------------------------------------------------------------
+Screenshot (2755)
+-> we're not trying to guess actual distribution of machine
+-> we're guessing where actual expected val. may lie
+
+for blue distribution- it can be anywhere in blue spectrum, but most likly at that pt. same for all distribution
+----------------------------------------------------------------------
+Thus Thompson is probablistic as we're guessing actual val.
+UCB is determinstic as strick about shrinking & choosing conf. band
+----------------------------------------------------------------------
+Round 1: 	Screenshot (2756)
+machine randomly generated pts.
+could be anywhere. if selected random. in long run- near centre
+
+- we have 3 pts. that're our own virtual bandit. Green is best one here
+when projected to actual world. we also pick green machine here i.e wepull lever for green machine. & it will give val. based on actual dis. Screenshot (2758)
+
+now we need to adjust perception of actual world- Screenshot (2759)
+it shifted & become narrower as we have new info. in sample
+
+This way goes in every round. we pick pts. get new bandits. find best one among them. project it on actual world. shrink & narrow distribution till we get final result.
+
+after long iteration we will get that yellow is best distribution. 
+(Screenshot (2765))
+----------------------------------------------------------------------
+# 		UCB V/s Thompson sampling
+. determinstic <-->		probablistic
+
+. no randomness in Algo <--> 	randomness allowed
+
+. req. update at every round_ val. we get once we pull lever of
+machine. that need to be incoperated right away before going to next round
+i.e made adjustmnt to Algo. based on that val. 
+<--> 	can accomodate delayed feedback. as generated in probablistic manner. thus allow for batch prcessing later when we have many records then we update algo. thus computaionally efficient.
+
+. Thompson has better empricial evidence.
